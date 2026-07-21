@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bloom — A Little Something Pretty</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,500&family=Quicksand:wght@400;500;600&display=swap');
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(160deg, #fbe4ec 0%, #f6d9e6 35%, #eccfe0 100%);
+    font-family: 'Quicksand', sans-serif;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* floating petals */
+  .petal {
+    position: absolute;
+    top: -10%;
+    font-size: 22px;
+    opacity: 0.7;
+    animation: fall linear infinite;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  @keyframes fall {
+    0%   { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(110vh) rotate(360deg); }
+  }
+
+  .card {
+    position: relative;
+    z-index: 2;
+    width: 340px;
+    background: #fffaf9;
+    border-radius: 24px;
+    padding: 40px 32px;
+    text-align: center;
+    box-shadow: 0 20px 45px rgba(200, 120, 160, 0.25);
+    border: 1px solid #f6dde8;
+  }
+
+  .icon {
+    font-size: 2.4em;
+    margin-bottom: 14px;
+  }
+
+  .eyebrow {
+    font-size: 0.72em;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #c98aa8;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  .quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.35em;
+    color: #5c3d4d;
+    line-height: 1.5;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  button {
+    margin-top: 24px;
+    background: linear-gradient(135deg, #f2a6c4, #d888ae);
+    color: #fff;
+    border: none;
+    padding: 13px 30px;
+    border-radius: 40px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    font-size: 0.95em;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(216, 136, 174, 0.4);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(216, 136, 174, 0.5);
+  }
+
+  button:active {
+    transform: translateY(0);
+  }
+
+  .footer-note {
+    margin-top: 18px;
+    font-size: 0.72em;
+    color: #c99cb0;
+    letter-spacing: 0.5px;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="icon">🌸</div>
+  <div class="eyebrow">A little something for Abisola</div>
+  <div class="quote" id="quote">Tap the button for a bit of softness today.</div>
+  <button onclick="newQuote()">✨ Give me another</button>
+  <div class="footer-note">made with a little sparkle, just for Abisola</div>
+</div>
+
+<script>
+  const quotes = [
+    "You are allowed to take up space and still be gentle.",
+    "Soft doesn't mean weak. It means you choose peace on purpose.",
+    "Bloom at your own pace — no one else's season fits you.",
+    "You're the kind of woman other women quietly admire.",
+    "Rest is productive. Even flowers close at night.",
+    "Your softness is not a flaw, it's your quiet power.",
+    "Today, be gentle with yourself the way you are with others.",
+    "You don't need permission to shine a little brighter.",
+    "Some days you're the storm. Today, just be the calm.",
+    "You smell like confidence and a little bit of magic.",
+    "Grace looks good on you — wear it today.",
+    "You are someone's favorite person to be around.",
+    "A little lipstick, a little courage — you've got this.",
+    "Be the flower that grows through the concrete.",
+    "You're doing better than you think you are."
+  ];
+
+  const emojis = ["🌸","🌷","💗","🌺","🦋","🎀","💐","🌼"];
+
+  function newQuote() {
+    const q = quotes[Math.floor(Math.random() * quotes.length)];
+    document.getElementById('quote').textContent = q;
+    document.querySelector('.icon').textContent = emojis[Math.floor(Math.random() * emojis.length)];
+  }
+
+  // floating petals background
+  const petalEmojis = ["🌸","🌷","💮","🌺"];
+  const body = document.body;
+  for (let i = 0; i < 14; i++) {
+    const petal = document.createElement('div');
+    petal.classList.add('petal');
+    petal.textContent = petalEmojis[Math.floor(Math.random() * petalEmojis.length)];
+    petal.style.left = Math.random() * 100 + 'vw';
+    petal.style.animationDuration = (8 + Math.random() * 10) + 's';
+    petal.style.animationDelay = (Math.random() * 10) + 's';
+    petal.style.fontSize = (16 + Math.random() * 14) + 'px';
+    body.appendChild(petal);
+  }
+</script>
+
+</body>
+</html>
